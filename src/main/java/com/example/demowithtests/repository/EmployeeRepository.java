@@ -52,7 +52,11 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     void updateEmployeeByName(String name, Integer id);
 
     @NotNull
+    @EntityGraph(attributePaths = {"addresses", "document"})
     Page<Employee> findAll(Pageable pageable);
+
+    @EntityGraph(attributePaths = {"addresses", "document"})
+    List<Employee> findAll();
 
     @EntityGraph(attributePaths = {"addresses", "document"})
     Page<Employee> findByName(String name, Pageable pageable);
@@ -62,4 +66,17 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query(value = "SELECT * FROM users WHERE country = 'Ukraine'", nativeQuery = true)
     Optional<List<Employee>> findAllUkrainian();
 
+    @Query(value = "SELECT e FROM Employee e WHERE SUBSTRING(e.email, LENGTH(e.email)-1, 2)='ru'")
+    List<Employee> findRusMail();
+
+    @Query(value = "SELECT e FROM Employee e WHERE SUBSTRING(e.email, LENGTH(e.email)-1, 2)='ru'")
+    @EntityGraph(type = EntityGraph.EntityGraphType.FETCH, attributePaths = {"addresses", "document"})
+    List<Employee> findRusMailWithGraph();
+
+    @Query(value = "SELECT e FROM Employee e WHERE e.country = 'Ukraine' AND e.gender = 'F' ")
+    List<Employee> findUkrainianWomen();
+
+    @Query(value = "SELECT e FROM Employee e WHERE e.country = 'Ukraine' AND e.gender = 'F' ")
+    @EntityGraph(type = EntityGraph.EntityGraphType.FETCH, attributePaths = {"addresses", "document"})
+    List<Employee> findUkrainianWomenWithGraph();
 }

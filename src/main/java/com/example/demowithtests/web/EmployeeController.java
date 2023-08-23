@@ -185,4 +185,24 @@ public class EmployeeController {
         log.debug("refreshEmployeeName() EmployeeController - end: id = {}", id);
         return employee;
     }
+
+    @GetMapping("/users/with-rus-mail")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Employee> getEmployeesWithRusMails() {
+        return employeeService.getRusMail();
+    }
+    @GetMapping("/users/with-rus-mail-with-graph")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Employee> getEmployeesWithRusMailsWithGraph() {
+        return employeeService.getRusMailWithGraph();
+    }    @GetMapping("/users/ukr-women")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Employee> getEmployeesUkrainianWomen() {
+        return employeeService.getUkrainianWomen();
+    }
+    @GetMapping("/users/ukr-women-with-graph")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Employee> getEmployeesUkrainianWomenWithGraph() {
+        return employeeService.getUkrainianWomenWithGraph();
+    }
 }

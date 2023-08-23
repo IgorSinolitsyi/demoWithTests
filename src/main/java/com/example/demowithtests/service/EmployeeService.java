@@ -60,4 +60,13 @@ public interface EmployeeService {
 
     void updateEmployeeByName(String name, Integer id);
 
+    List<Employee> getRusMail();
+    List<Employee> getRusMailWithGraph();
+
+    List<Employee> getUkrainianWomen();
+    List<Employee> getUkrainianWomenWithGraph();
+
+
+
+
 }

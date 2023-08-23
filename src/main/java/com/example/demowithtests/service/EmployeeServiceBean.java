@@ -213,5 +213,20 @@ public class EmployeeServiceBean implements EmployeeService {
         employeeRepository.updateEmployeeByName(name, id);
     }
 
+    @Override
+    public List<Employee> getRusMail(){
+        return employeeRepository.findRusMail();
+    }
+    @Override
+    public List<Employee> getRusMailWithGraph(){
+        return employeeRepository.findRusMailWithGraph();
+    }    @Override
+    public List<Employee> getUkrainianWomen(){
+        return employeeRepository.findUkrainianWomen();
+    }
+    @Override
+    public List<Employee> getUkrainianWomenWithGraph(){
+        return employeeRepository.findUkrainianWomenWithGraph();
+    }
 
 }
